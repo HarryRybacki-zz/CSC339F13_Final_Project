@@ -1,4 +1,4 @@
-// Header file for Art class 
+// Header file for componentn one art-related classes
 
 #include <iostream>
 #include <string>

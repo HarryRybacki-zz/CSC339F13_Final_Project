@@ -13,14 +13,19 @@ This program mimics musem software and is broken down into three components:
 */
 #include <iostream>
 #include <string>
+#include <vector>
+#include <fstream>
+#include <sstream>
 
 #include "art.h"
+//#include "node.h"
+#include "patron.h"
 
 using namespace std;
 
 int main() {
-	// compontent one
-	cout << "BEGIN COMPONENT ONE:" << endl;
+	// MARK BEGINNING OF COMPONENT TWO
+	cout << endl << endl << "#####BEGIN COMPONENT ONE:#####" << endl << endl;
 
 	// start collection one
 	ArtCollection collection1;
@@ -88,6 +93,73 @@ int main() {
 	// remove all pieces of art from collection2 and reprint
 	collection2.removeAllArt();
 	cout << "Collection Two (removing everything):" << endl << collection2.prettyPrint() << endl;
+
+	// MARK END OF COMPONENT ONE	
+
+	// MARK BEGINNING OF COMPONENT TWO
+	cout << endl << endl << "#####BEGIN COMPONENT TWO:#####" << endl;
+
+	// Create our Patros vector
+	Patrons patrons;
+
+	/*
+	Text file in which fields are separated by tabs “\t” and patrons by “\n”. 
+	For example, the first patron (the fields are all in the following order: id, name) could be 1234, "Timmy"
+	*/
+
+	// Create temp vars and open patrons file
+	int id;
+	string line, name;
+	cout << endl << "Reading file \"patrons.txt\"" << endl << endl;
+	ifstream infile("patrons.txt");
+
+	// Read in patrons and add them to patrons vector
+	while(getline(infile, line)) {
+		// read data
+		stringstream linestream(line);
+		linestream >> id;
+		linestream >> name;
+		// create patron and insert into patrons vector
+		Patron patron;
+		patron.setId(id);
+		patron.setName(name);
+		patrons.push_back(patron);
+		cout << "Adding id: " << id << ", name: " << name << endl;
+	}
+	// Close file
+	infile.close();
+
+	/*
+	Text file in which fields are separated by tabs “\t” and donations by “\n”. 
+	For example, the first patron (the fields are all in the following order: id, donation) could be 1234, 1000
+	*/
+
+	// Create temp vars for data and open donations file
+	int donation, patron_index;
+	cout << endl << "Reading file \"donations.txt\"" << endl << endl;
+	ifstream infile2("donations.txt");
+
+	// Read in patrons and add them to patrons vector
+	while(getline(infile2, line)) {
+		// read data
+		stringstream linestream(line);
+		linestream >> id;
+		linestream >> donation;
+		// locate patron and update donations
+		patron_index = patrons.findPatron(id, patrons);
+		patrons[patron_index].updateDonations(donation);
+		cout << "Adding id: " << id << ", donated: " << donation << endl;
+	}
+	// Close file
+	infile2.close();
+
+	// Demonstrate before/after sorting with overloaded operators
+	cout << endl << "Before sorting:" << endl << patrons << endl;
+	std::sort(patrons.begin(), patrons.end());
+	cout << "After sorting:" << endl << patrons << endl;
+
+	// MARK END OF COMPONENT ONE	
+
 
 	return 0;
 }
