@@ -8,12 +8,12 @@ Employee::Employee(string _name,
 {
     name = _name;
     wage = _wage;
+    hours = 40;
 }
 Employee::~Employee(){}
 void Employee::setWage(float _wage)
 {
     wage = _wage;
-    hours = 0;
 }
 int Employee::getPay() {
     return int(wage) * hours;
@@ -40,15 +40,14 @@ Curator::Curator(string _name,
 {
     speciality = _spec;
     experience = _exp;
-    hours = 0;
 }
 Curator::~Curator(){}
 void Curator::print() {
-    cout << "Name: " << name << endl;
+    cout << "Curator: " << name << endl;
     cout << "Wage: " << wage << endl;
     cout << "Hours: " << getHours() << endl;
-    cout << "Speciality:" << speciality << endl;
-    cout << "Experience:" << experience << endl;
+    cout << "Speciality: " << speciality << endl;
+    cout << "Experience: " << experience << endl;
     cout << "Pay: " << getPay() << endl;
 }
 char Curator::getSpeciality() const {
@@ -72,14 +71,13 @@ Docent::Docent(string _name,
 : Employee(_name, _wage)
 {
     shift = _shift;
-    hours = 0;
 }
 Docent::~Docent(){}
 char Docent::getShift() const {
     return shift;
 }
 void Docent::print() {
-    cout << "Name: " << name << endl;
+    cout << "Docent: " << name << endl;
     cout << "Wage: " << wage << endl;
     cout << "Hours: " << getHours() << endl;
     cout << "Shift: " << shift << endl;
@@ -101,6 +99,7 @@ SeniorDocent::SeniorDocent(string _name,
 SeniorDocent::~SeniorDocent(){}
 void SeniorDocent::print()
 {
+    cout << "Status: Senior" << endl; 
     Docent::print();
     cout << "Vacation: " << vacation << endl;
 }

@@ -33,7 +33,7 @@ public:
 class Curator : public Employee {
 protected:
     char speciality;
-    int experience;//, hours;
+    int experience;
 public:
     // constructor
     Curator(string _name, float _wage, char _spec, int _exp);
@@ -51,7 +51,6 @@ public:
 class Docent : public Employee {
 protected:
     char shift;
-    int hours;
 public:
     // constructor
     Docent(string _name, float _wage, char _shift);
