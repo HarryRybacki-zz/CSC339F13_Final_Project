@@ -16,14 +16,71 @@ This program mimics musem software and is broken down into three components:
 #include <vector>
 #include <fstream>
 #include <sstream>
+#include <list>
 
 #include "art.h"
-//#include "node.h"
 #include "patron.h"
+#include "employee.h"
 
 using namespace std;
 
 int main() {
+    
+    // employee class construction test
+    string john = "John";
+    float money = 10.0;
+    //Employee tim(john, money);
+    
+    // curator class construction test
+    char sp = 'c';
+    int exper = 1;
+    Curator jim(john, money, sp, exper);
+
+    // curator accesor method tests
+    cout << "Initial curator:" << endl;
+    jim.print(); cout << endl;
+    
+    // curator mutator method tests
+    sp = 't';
+    jim.setSpeciality(sp);
+    exper = 2;
+    jim.setExperience(exper);
+    int hours = 10;
+    jim.addHours(hours);
+    cout << "After modifications:" << endl;
+    jim.print(); cout << endl;
+    
+    // docent class construction test
+    john = "James";
+    money = 20.0;
+    char shift = 'm';
+    Docent james(john, money, shift);
+    
+    // docent access method tests
+    cout << "Initial docent:" << endl;
+    james.print(); cout << endl ;
+    cout << james.getShift() << endl;
+    james.setShift('p');
+    cout << james.getShift() << endl;
+    
+    // seniordocent constructor test
+    john = "Timmy";
+    int vacation = 145;
+    SeniorDocent tim(john, money, shift, vacation);
+    
+    // seniordocent accessor method tests
+    cout << "Initial Senior Docent:" << endl;
+    tim.print(); cout << endl;
+    
+    // senior docent mutator method tests
+    tim.useVacation(100);
+    tim.addHours(100);
+    
+    cout << "Final Senior Docent:" << endl;
+    tim.print(); cout << endl;
+    
+/*
+    
 	// MARK BEGINNING OF COMPONENT TWO
 	cout << endl << endl << "#####BEGIN COMPONENT ONE:#####" << endl << endl;
 
@@ -102,11 +159,12 @@ int main() {
 	// Create our Patros vector
 	Patrons patrons;
 
+*/
 	/*
 	Text file in which fields are separated by tabs “\t” and patrons by “\n”. 
 	For example, the first patron (the fields are all in the following order: id, name) could be 1234, "Timmy"
 	*/
-
+/*
 	// Create temp vars and open patrons file
 	int id;
 	string line, name;
@@ -128,13 +186,13 @@ int main() {
 	}
 	// Close file
 	infile.close();
-
+*/
 	/*
 	Text file in which fields are separated by tabs “\t” and donations by “\n”. 
 	For example, the first patron (the fields are all in the following order: id, donation) could be 1234, 1000
 	*/
 
-	// Create temp vars for data and open donations file
+/*	// Create temp vars for data and open donations file
 	int donation, patron_index;
 	cout << endl << "Reading file \"donations.txt\"" << endl << endl;
 	ifstream infile2("donations.txt");
@@ -158,8 +216,7 @@ int main() {
 	std::sort(patrons.begin(), patrons.end());
 	cout << "After sorting:" << endl << patrons << endl;
 
-	// MARK END OF COMPONENT ONE	
-
-
+	// MARK END OF COMPONENT ONE0
+*/
 	return 0;
 }
